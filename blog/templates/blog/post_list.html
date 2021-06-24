@@ -1,33 +1,15 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Smriti's blog</title>
-    </head>
-    <body>
-        <header>
-            <h1><a href="/">Smriti's Blog</a></h1>
-        </header>
+{% extends 'blog/base.html'%}
 
-        {% for post in posts %}
-            <article>
-                <time>published: {{ post.published_date }}</time>
-                <h2><a href="">{{ post.title }}</a></h2>
-                <p>{{ post.text|linebreaksbr }}</p>
-            </article>
-        {% endfor %}
-
-
-
-        <!-- <article>
-            <time>published: 1.06.2021, 12:00</time>
-            <h2><a href="">My first post</a></h2>
-            <p>{{posts}}</p>
+{% block content%}
+    {% for post in posts %}
+        <article class="post">
+            <time class="date">
+                {{ post.published_date }}
+            </time>
+            <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
+            <p>{{ post.text|linebreaksbr }}</p>
         </article>
+    {% endfor %}
+{% endblock %}
+                
 
-        <article>
-            <time>published: 1.06.2021, 12:05</time>
-            <h2><a href="">My second post</a></h2>
-            <p>{{posts}}</p>
-        </article> -->
-    </body>
-</html>
